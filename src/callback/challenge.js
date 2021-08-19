@@ -1,7 +1,7 @@
 //Funcion que da vida a las llamadas de mi API
 //Instancia al llamado de una API en JavaScript
 let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
+let API = "https://rickandmortyapi.com/api/character/";
 //Funcion FetchData para traer la informacion de nuestra API
 function fetchData(url_api, callback) {
     let xhttp = new XMLHttpRequest();
@@ -29,3 +29,23 @@ function fetchData(url_api, callback) {
 //2 - ya se ha cargado
 //3 - descarga de algo
 // -  completado
+
+//EJERCICIO
+//1.-Hacer peticion a nuestra API
+//2.-Obtener cuantos elementos tiene
+//3.-Acceder al primer personaje
+//4.-Obtener la ubicacion en la que se encuentra
+//5.-Saber en que dimension se encuentra
+
+fetchData(API, function (error1, data1) {
+    if (error1) return console.error(error1);
+    fetchData(API + data1.results[0].id, function (error2, data2) {
+        if (error2) return console.error(error2);
+        fetchData(data2.origin.url, function (error3, data3) {
+            if (error3) return console.log(error3);
+            console.log(data1.info.count);
+            console.log(data2.name);
+            console.log(data3.dimension);
+        });
+    })
+})
