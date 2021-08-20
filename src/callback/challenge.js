@@ -12,6 +12,7 @@ function fetchData(url_api, callback) {
         //si el estado en el cual se encuentra es satisfactorio
         if (xhttp.readyState === 4) {
             if (xhttp.status === 200) {
+                //Referencia a todo el contexto del json
                 callback(null, JSON.parse(xhttp.responseText));
             } else {
                 const error = new Error('Error' + url_api);
@@ -49,3 +50,4 @@ fetchData(API, function (error1, data1) {
         });
     })
 })
+
